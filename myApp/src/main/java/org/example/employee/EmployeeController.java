@@ -1,4 +1,4 @@
-package org.example.admin;
+package org.example.employee;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,30 +44,30 @@ public class EmployeeController implements Initializable {
     private Label status;
 
     @FXML
-    private TableView<EmployeesData> employeetable;
+    private TableView<EmployeeData> employeetable;
 
     @FXML
-    private TableColumn<EmployeesData, String> idcolumn;
+    private TableColumn<EmployeeData, String> idcolumn;
     @FXML
-    private TableColumn<EmployeesData, String> firstnamecolumn;
+    private TableColumn<EmployeeData, String> firstnamecolumn;
     @FXML
-    private TableColumn<EmployeesData, String> lastnamecolumn;
+    private TableColumn<EmployeeData, String> lastnamecolumn;
     @FXML
-    private TableColumn<EmployeesData, String> middlenamecolumn;
+    private TableColumn<EmployeeData, String> middlenamecolumn;
     @FXML
-    private TableColumn<EmployeesData, String> jobtitlecolumn;
+    private TableColumn<EmployeeData, String> jobtitlecolumn;
     @FXML
-    private TableColumn<EmployeesData, String> departmentidcolumn;
+    private TableColumn<EmployeeData, String> departmentidcolumn;
     @FXML
-    private TableColumn<EmployeesData, String> manageridcolumn;
+    private TableColumn<EmployeeData, String> manageridcolumn;
     @FXML
-    private TableColumn<EmployeesData, String> hiredatecolumn;
+    private TableColumn<EmployeeData, String> hiredatecolumn;
     @FXML
-    private TableColumn<EmployeesData, String> salarycolumn;
+    private TableColumn<EmployeeData, String> salarycolumn;
     @FXML
-    private TableColumn<EmployeesData, String> addressidcolumn;
+    private TableColumn<EmployeeData, String> addressidcolumn;
 
-    private ObservableList<EmployeesData> data;
+    private ObservableList<EmployeeData> data;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBConnection dbConnection = new DBConnection();
@@ -80,7 +80,7 @@ public class EmployeeController implements Initializable {
              ResultSet rs = connection.createStatement().executeQuery(sqlQuery)) {
             this.data = FXCollections.observableArrayList();
             while (rs.next()) {
-                this.data.add(new EmployeesData(
+                this.data.add(new EmployeeData(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -92,16 +92,16 @@ public class EmployeeController implements Initializable {
                         rs.getString(9),
                         rs.getString(10)));
             }
-            this.idcolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("ID"));
-            this.firstnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("firstName"));
-            this.lastnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("lastName"));
-            this.middlenamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("middleName"));
-            this.jobtitlecolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("jobTitle"));
-            this.departmentidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("departmentID"));
-            this.manageridcolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("managerID"));
-            this.hiredatecolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("hireDate"));
-            this.salarycolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("salary"));
-            this.addressidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeesData, String>("addressID"));
+            this.idcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("ID"));
+            this.firstnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("firstName"));
+            this.lastnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("lastName"));
+            this.middlenamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("middleName"));
+            this.jobtitlecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("jobTitle"));
+            this.departmentidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("departmentID"));
+            this.manageridcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("managerID"));
+            this.hiredatecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("hireDate"));
+            this.salarycolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("salary"));
+            this.addressidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("addressID"));
 
             this.employeetable.setItems(null);
             this.employeetable.setItems(this.data);
@@ -211,7 +211,7 @@ public class EmployeeController implements Initializable {
             this.data = FXCollections.observableArrayList();
 
             while (rs.next()) {
-                this.data.add(new EmployeesData(
+                this.data.add(new EmployeeData(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -223,9 +223,7 @@ public class EmployeeController implements Initializable {
                         rs.getString(9),
                         rs.getString(10)));
             }
-//            TableView<EmployeesData> tableView = new TableView<>(data);
-//            ObservableList<EmployeesData> items = tableView.getItems();
-            ObservableList<EmployeesData> selectedEmployee = employeetable.getSelectionModel().getSelectedItems();
+            ObservableList<EmployeeData> selectedEmployee = employeetable.getSelectionModel().getSelectedItems();
             if (selectedEmployee.size() > 0) {
                 String idProperty = selectedEmployee.get(0).getID();
                 sqlQuery = "DELETE FROM employees WHERE employee_id = " + idProperty;

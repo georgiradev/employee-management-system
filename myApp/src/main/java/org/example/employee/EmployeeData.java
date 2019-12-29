@@ -1,9 +1,9 @@
-package org.example.admin;
+package org.example.employee;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class EmployeesData {
+public class EmployeeData {
 
     private final StringProperty ID;
     private final StringProperty firstName;
@@ -16,8 +16,8 @@ public class EmployeesData {
     private final StringProperty salary;
     private final StringProperty addressID;
 
-    public EmployeesData(String ID, String firstName, String lastName, String middleName, String jobTitle,
-                         String departmentID, String managerID, String hireDate, String salary, String addressID) {
+    public EmployeeData(String ID, String firstName, String lastName, String middleName, String jobTitle,
+                        String departmentID, String managerID, String hireDate, String salary, String addressID) {
         this.ID = new SimpleStringProperty(ID);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);

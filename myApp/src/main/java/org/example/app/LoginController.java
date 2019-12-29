@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.example.admin.EmployeeController;
+import org.example.employee.EmployeeController;
 
 import java.io.IOException;
 import java.net.URL;
