@@ -31,7 +31,7 @@
                                  </columnResizePolicy>
                               </TableView>
                            </children></HBox>
-                        <VBox prefHeight="691.0" prefWidth="202.0">
+                        <VBox fx:id="layout" prefHeight="691.0" prefWidth="202.0">
                            <children>
                               <Label prefHeight="25.0" prefWidth="353.0" text="Employee Details">
                                  <padding>

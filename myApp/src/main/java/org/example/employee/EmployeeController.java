@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.example.db_util.DBConnection;
 
@@ -42,6 +43,8 @@ public class EmployeeController implements Initializable {
     private TextField address_id;
     @FXML
     private Label status;
+    @FXML
+    private VBox layout;
 
     @FXML
     private TableView<EmployeeData> employeetable;
@@ -71,10 +74,12 @@ public class EmployeeController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBConnection dbConnection = new DBConnection();
+        layout.getStylesheets().add("/style.css");
+        loadEmployeeData(new ActionEvent());
     }
 
     @FXML
-    private void loadEmployeeData(ActionEvent actionEvent) throws SQLException {
+    private void loadEmployeeData(ActionEvent actionEvent) {
         String sqlQuery = "SELECT * FROM employees";
         try (Connection connection = DBConnection.getConnection();
              ResultSet rs = connection.createStatement().executeQuery(sqlQuery)) {
@@ -118,47 +123,21 @@ public class EmployeeController implements Initializable {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);) {
 
-            if (!this.first_name.getText().isBlank()) {
-                preparedStatement.setString(1, this.first_name.getText());
-            } else {
-                status.setText("Please enter First Name");
-                status.setTextFill(Color.RED);
-                return;
-            }
-            if (!last_name.getText().isBlank()) {
-                preparedStatement.setString(2, this.last_name.getText());
-            } else {
-                status.setText("Please enter Last Name");
-                status.setTextFill(Color.RED);
-                return;
-            }
+            if (isBlank(preparedStatement, first_name, 1, "Please enter First Name")) return;
+            if (isBlank(preparedStatement, last_name, 2, "Please enter Last Name")) return;
             if (!middle_name.getText().isBlank()) {
                 preparedStatement.setString(3, this.middle_name.getText());
             } else {
                 preparedStatement.setString(3, null);
             }
-
-            if (!this.job_title.getText().isBlank()) {
-                preparedStatement.setString(4, this.job_title.getText());
-            } else {
-                status.setText("Please enter Job Title");
-                status.setTextFill(Color.RED);
-                return;
-            }
-            if (!this.department_id.getText().isBlank()) {
-                preparedStatement.setString(5, this.department_id.getText());
-            } else {
-                status.setText("Please enter Department ID");
-                status.setTextFill(Color.RED);
-                return;
-            }
-            if (!this.manager_id.getText().isBlank()) {
+            if (isBlank(preparedStatement, job_title, 4, "Please enter Job Title")) return;
+            if (isBlank(preparedStatement, department_id, 5, "Please enter Department ID")) return;
+            if (!manager_id.getText().isBlank()) {
                 preparedStatement.setString(6, this.manager_id.getText());
             } else {
                 preparedStatement.setString(6, null);
             }
-
-            if (!this.hire_date.getEditor().getText().isBlank()) {
+            if (!hire_date.getEditor().getText().isBlank()) {
                 LocalDate date = this.hire_date.getValue();
                 LocalDateTime dateTime = date.atTime(LocalTime.now());
                 preparedStatement.setString(7, dateTime.toString());
@@ -167,40 +146,42 @@ public class EmployeeController implements Initializable {
                 status.setTextFill(Color.RED);
                 return;
             }
-            if (!this.salary.getText().isBlank()) {
-                preparedStatement.setString(8, this.salary.getText());
-            } else {
-                status.setText("Please enter Salary");
-                status.setTextFill(Color.RED);
-                return;
-            }
-            if (!this.address_id.getText().isBlank()) {
-                preparedStatement.setString(9, this.address_id.getText());
-            } else {
-                status.setText("Please enter Address");
-                status.setTextFill(Color.RED);
-                return;
-            }
-
+            if (isBlank(preparedStatement, salary, 8, "Please enter Salary")) return;
+            if (isBlank(preparedStatement, address_id, 9, "Please enter Address")) return;
             status.setText("Success");
             status.setTextFill(Color.GREEN);
             preparedStatement.execute();
+            loadEmployeeData(actionEvent);
         } catch (SQLException e) {
+            status.setText("Something went wrong");
+            status.setTextFill(Color.RED);
             System.out.println(e.getMessage());
         }
     }
 
+    private boolean isBlank(PreparedStatement preparedStatement, TextField textField, int i, String s) throws SQLException {
+        if (!textField.getText().isBlank()) {
+            preparedStatement.setString(i, textField.getText());
+            textField.getStyleClass().remove("validation-error");
+            return false;
+        }
+        textField.getStyleClass().add("validation-error");
+        status.setText(s);
+        status.setTextFill(Color.RED);
+        return true;
+    }
+
     @FXML
     private void clearFields(ActionEvent actionEvent) {
-        first_name.setText("");
-        last_name.setText("");
-        middle_name.setText("");
-        job_title.setText("");
-        department_id.setText("");
-        manager_id.setText("");
+        first_name.clear();
+        last_name.clear();
+        middle_name.clear();
+        job_title.clear();
+        department_id.clear();
+        manager_id.clear();
         hire_date.setValue(null);
-        salary.setText("");
-        address_id.setText("");
+        salary.clear();
+        address_id.clear();
         status.setText(null);
     }
 
@@ -209,21 +190,7 @@ public class EmployeeController implements Initializable {
         String sqlQuery = "SELECT * FROM employees";
         try (Connection connection = DBConnection.getConnection();
              ResultSet rs = connection.createStatement().executeQuery(sqlQuery);) {
-            data = FXCollections.observableArrayList();
 
-            while (rs.next()) {
-                data.add(new EmployeeData(
-                        rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10)));
-            }
             ObservableList<EmployeeData> selectedEmployee = employeetable.getSelectionModel().getSelectedItems();
             if (selectedEmployee.size() > 0) {
                 String idProperty = selectedEmployee.get(0).getID();
@@ -231,6 +198,8 @@ public class EmployeeController implements Initializable {
 
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
                 preparedStatement.execute();
+
+                loadEmployeeData(actionEvent);
             }
 
         } catch (SQLException e) {
