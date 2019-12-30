@@ -13,17 +13,14 @@ public class LoginModel {
 
     public LoginModel() {
         try {
-            this.connection = DBConnection.getConnection();
+            connection = DBConnection.getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if (this.connection == null) {
-            System.exit(1);
+
         }
     }
 
     public boolean isConnectedWithDB() {
-        return this.connection != null;
+        return connection != null;
     }
 
     public boolean isLogin(String user, String password) throws SQLException {

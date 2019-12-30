@@ -37,24 +37,26 @@ public class LoginController implements Initializable {
     private Label loginStatus;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(this.loginModel.isConnectedWithDB()) {
-            this.dbStatus.setText("Connected");
-            this.dbStatus.setTextFill(Color.GREEN);
+        if (loginModel.isConnectedWithDB()) {
+            dbStatus.setText("Connected");
+            dbStatus.setTextFill(Color.GREEN);
         } else {
-            this.dbStatus.setText("Not Connected");
-            this.dbStatus.setTextFill(Color.RED);
+            dbStatus.setText("Not Connected");
+            dbStatus.setTextFill(Color.RED);
         }
     }
 
     @FXML
     public void loginPrompt(ActionEvent actionEvent) {
         try {
-            if(this.loginModel.isLogin(this.username.getText(), this.password.getText())) {
+            if (loginModel.isConnectedWithDB() && this.loginModel.isLogin(username.getText(), password.getText())) {
                 Stage stage = (Stage) this.loginButton.getScene().getWindow();
                 stage.close();
                 administratorLogin();
-            } else {
-                this.loginStatus.setText("Wrong username or password");
+            } else if (dbStatus.getText().equals("Connected")) {
+                loginStatus.setText("Wrong username or password");
+            } else if (dbStatus.getText().equals("Not Connected")) {
+                loginStatus.setText("Database connection failed");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,8 +65,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void loginPromptKey(KeyEvent keyEvent) {
-        if (keyEvent.getCode().equals(KeyCode.ENTER))
-        {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             loginPrompt(new ActionEvent());
         }
     }

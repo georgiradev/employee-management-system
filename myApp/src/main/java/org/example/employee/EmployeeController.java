@@ -78,9 +78,9 @@ public class EmployeeController implements Initializable {
         String sqlQuery = "SELECT * FROM employees";
         try (Connection connection = DBConnection.getConnection();
              ResultSet rs = connection.createStatement().executeQuery(sqlQuery)) {
-            this.data = FXCollections.observableArrayList();
+            data = FXCollections.observableArrayList();
             while (rs.next()) {
-                this.data.add(new EmployeeData(
+                data.add(new EmployeeData(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -92,19 +92,19 @@ public class EmployeeController implements Initializable {
                         rs.getString(9),
                         rs.getString(10)));
             }
-            this.idcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("ID"));
-            this.firstnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("firstName"));
-            this.lastnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("lastName"));
-            this.middlenamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("middleName"));
-            this.jobtitlecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("jobTitle"));
-            this.departmentidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("departmentID"));
-            this.manageridcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("managerID"));
-            this.hiredatecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("hireDate"));
-            this.salarycolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("salary"));
-            this.addressidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("addressID"));
+            idcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("ID"));
+            firstnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("firstName"));
+            lastnamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("lastName"));
+            middlenamecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("middleName"));
+            jobtitlecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("jobTitle"));
+            departmentidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("departmentID"));
+            manageridcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("managerID"));
+            hiredatecolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("hireDate"));
+            salarycolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("salary"));
+            addressidcolumn.setCellValueFactory(new PropertyValueFactory<EmployeeData, String>("addressID"));
 
-            this.employeetable.setItems(null);
-            this.employeetable.setItems(this.data);
+            employeetable.setItems(null);
+            employeetable.setItems(this.data);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -112,6 +112,7 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private void addEmployee(ActionEvent actionEvent) {
+        status.setText(null);
         String sqlQuery = "INSERT INTO employees(first_name, last_name, middle_name, job_title, department_id, manager_id, hire_date, salary, address_id) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnection.getConnection();
@@ -120,18 +121,18 @@ public class EmployeeController implements Initializable {
             if (!this.first_name.getText().isBlank()) {
                 preparedStatement.setString(1, this.first_name.getText());
             } else {
-                this.status.setText("Please enter First Name");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter First Name");
+                status.setTextFill(Color.RED);
                 return;
             }
-            if (!this.last_name.getText().isBlank()) {
+            if (!last_name.getText().isBlank()) {
                 preparedStatement.setString(2, this.last_name.getText());
             } else {
-                this.status.setText("Please enter Last Name");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Last Name");
+                status.setTextFill(Color.RED);
                 return;
             }
-            if (!this.middle_name.getText().isBlank()) {
+            if (!middle_name.getText().isBlank()) {
                 preparedStatement.setString(3, this.middle_name.getText());
             } else {
                 preparedStatement.setString(3, null);
@@ -140,15 +141,15 @@ public class EmployeeController implements Initializable {
             if (!this.job_title.getText().isBlank()) {
                 preparedStatement.setString(4, this.job_title.getText());
             } else {
-                this.status.setText("Please enter Job Title");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Job Title");
+                status.setTextFill(Color.RED);
                 return;
             }
             if (!this.department_id.getText().isBlank()) {
                 preparedStatement.setString(5, this.department_id.getText());
             } else {
-                this.status.setText("Please enter Department ID");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Department ID");
+                status.setTextFill(Color.RED);
                 return;
             }
             if (!this.manager_id.getText().isBlank()) {
@@ -162,27 +163,27 @@ public class EmployeeController implements Initializable {
                 LocalDateTime dateTime = date.atTime(LocalTime.now());
                 preparedStatement.setString(7, dateTime.toString());
             } else {
-                this.status.setText("Please enter Hire Date");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Hire Date");
+                status.setTextFill(Color.RED);
                 return;
             }
             if (!this.salary.getText().isBlank()) {
                 preparedStatement.setString(8, this.salary.getText());
             } else {
-                this.status.setText("Please enter Salary");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Salary");
+                status.setTextFill(Color.RED);
                 return;
             }
             if (!this.address_id.getText().isBlank()) {
                 preparedStatement.setString(9, this.address_id.getText());
             } else {
-                this.status.setText("Please enter Address");
-                this.status.setTextFill(Color.RED);
+                status.setText("Please enter Address");
+                status.setTextFill(Color.RED);
                 return;
             }
 
-            this.status.setText("Success");
-            this.status.setTextFill(Color.GREEN);
+            status.setText("Success");
+            status.setTextFill(Color.GREEN);
             preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -191,16 +192,16 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private void clearFields(ActionEvent actionEvent) {
-        this.first_name.setText("");
-        this.last_name.setText("");
-        this.middle_name.setText("");
-        this.job_title.setText("");
-        this.department_id.setText("");
-        this.manager_id.setText("");
-        this.hire_date.setValue(null);
-        this.salary.setText("");
-        this.address_id.setText("");
-        this.status.setText(null);
+        first_name.setText("");
+        last_name.setText("");
+        middle_name.setText("");
+        job_title.setText("");
+        department_id.setText("");
+        manager_id.setText("");
+        hire_date.setValue(null);
+        salary.setText("");
+        address_id.setText("");
+        status.setText(null);
     }
 
     @FXML
@@ -208,10 +209,10 @@ public class EmployeeController implements Initializable {
         String sqlQuery = "SELECT * FROM employees";
         try (Connection connection = DBConnection.getConnection();
              ResultSet rs = connection.createStatement().executeQuery(sqlQuery);) {
-            this.data = FXCollections.observableArrayList();
+            data = FXCollections.observableArrayList();
 
             while (rs.next()) {
-                this.data.add(new EmployeeData(
+                data.add(new EmployeeData(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
