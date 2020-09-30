@@ -9,39 +9,39 @@ import java.sql.SQLException;
 
 public class LoginModel {
 
-    private Connection connection;
+  private Connection connection;
 
-    public LoginModel() {
-        try {
-            connection = DBConnection.getConnection();
-        } catch (SQLException e) {
-
-        }
+  public LoginModel() {
+    try {
+      connection = DBConnection.getConnection();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+  }
 
-    public boolean isConnectedWithDB() {
-        return connection != null;
-    }
+  public boolean isConnectedWithDB() {
+    return connection != null;
+  }
 
-    public boolean isLogin(String user, String password) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String sqlQuery = "SELECT * FROM admin WHERE username = ? and password = ?";
-        try {
-            preparedStatement = this.connection.prepareStatement(sqlQuery);
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-        }
+  public boolean isLogin(String user, String password) throws SQLException {
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    String sqlQuery = "SELECT * FROM admin WHERE username = ? and password = ?";
+    try {
+      preparedStatement = connection.prepareStatement(sqlQuery);
+      preparedStatement.setString(1, user);
+      preparedStatement.setString(2, password);
+      resultSet = preparedStatement.executeQuery();
+      return resultSet.next();
+    } catch (SQLException e) {
+      return false;
+    } finally {
+      if (resultSet != null) {
+        resultSet.close();
+      }
+      if (preparedStatement != null) {
+        preparedStatement.close();
+      }
     }
+  }
 }
