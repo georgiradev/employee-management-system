@@ -5,10 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.flywaydb.core.Flyway;
 
 import java.io.IOException;
 
 public class LoginApp extends Application {
+
+  public static void main(String[] args) {
+    migrate();
+    launch();
+  }
 
   @Override
   public void start(Stage stage) {
@@ -24,7 +30,12 @@ public class LoginApp extends Application {
     }
   }
 
-  public static void main(String[] args) {
-    launch();
+  private static void migrate() {
+    Flyway flyway =
+        Flyway.configure()
+            .dataSource(
+                "jdbc:mysql://localhost:3306/empl_db?createDatabaseIfNotExist=true", "root", "2864")
+            .load();
+    flyway.migrate();
   }
 }

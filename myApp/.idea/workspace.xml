@@ -4,37 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd8f9a25-ced9-4c4b-9b92-d8776b5d5921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LoginApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LoginApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/LoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/LoginModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/db_util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/db_util/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/employee/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/employee/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/employee/EmployeeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/employee/EmployeeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/employee.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/myApp.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/employee.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/LoginApp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/app/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/app/LoginModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/db_util/DBConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/employee/EmployeeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/employee/EmployeeData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-    </list>
+    <list default="true" id="fd8f9a25-ced9-4c4b-9b92-d8776b5d5921" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -76,15 +47,15 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programming\myApp\src\main\java\org\example" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Georgi Radev\Desktop\employee-management-system\myApp\src\main\resources\db\migration" />
+      <recent name="C:\Users\Georgi Radev\Desktop\employee-management-system\myApp\src\main\resources" />
       <recent name="C:\Users\Georgi Radev\Desktop\employee-management-system\myApp\src\main\java" />
       <recent name="C:\Users\Georgi Radev\Desktop\employee-management-system\myApp\src\main\java\org\example" />
-      <recent name="C:\Users\Georgi Radev\Desktop\employee-management-system\myApp\src\main\resources" />
       <recent name="D:\Programming\myApp\src\main" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programming\myApp\src\main\java\org\example" />
     </key>
   </component>
   <component name="RunManager" selected="Application.LoginApp">
@@ -154,25 +125,29 @@
       <screen x="0" y="0" width="1603" height="862" />
     </state>
     <state x="517" y="172" key="FileChooserDialogImpl/0.0.1603.862@0.0.1603.862" timestamp="1601470963792" />
-    <state width="1559" height="398" key="GridCell.Tab.0.bottom" timestamp="1601473051587">
+    <state width="1559" height="398" key="GridCell.Tab.0.bottom" timestamp="1601484459419">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="398" key="GridCell.Tab.0.bottom/0.0.1603.862@0.0.1603.862" timestamp="1601473051587" />
-    <state width="1559" height="398" key="GridCell.Tab.0.center" timestamp="1601473051587">
+    <state width="1559" height="398" key="GridCell.Tab.0.bottom/0.0.1603.862@0.0.1603.862" timestamp="1601484459419" />
+    <state width="1559" height="398" key="GridCell.Tab.0.center" timestamp="1601484459419">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="398" key="GridCell.Tab.0.center/0.0.1603.862@0.0.1603.862" timestamp="1601473051587" />
-    <state width="1559" height="398" key="GridCell.Tab.0.left" timestamp="1601473051587">
+    <state width="1559" height="398" key="GridCell.Tab.0.center/0.0.1603.862@0.0.1603.862" timestamp="1601484459419" />
+    <state width="1559" height="398" key="GridCell.Tab.0.left" timestamp="1601484459419">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="398" key="GridCell.Tab.0.left/0.0.1603.862@0.0.1603.862" timestamp="1601473051587" />
-    <state width="1559" height="398" key="GridCell.Tab.0.right" timestamp="1601473051587">
+    <state width="1559" height="398" key="GridCell.Tab.0.left/0.0.1603.862@0.0.1603.862" timestamp="1601484459419" />
+    <state width="1559" height="398" key="GridCell.Tab.0.right" timestamp="1601484459419">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="398" key="GridCell.Tab.0.right/0.0.1603.862@0.0.1603.862" timestamp="1601473051587" />
+    <state width="1559" height="398" key="GridCell.Tab.0.right/0.0.1603.862@0.0.1603.862" timestamp="1601484459419" />
     <state x="281" y="5" key="SettingsEditor" timestamp="1601470964695">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
     <state x="281" y="5" key="SettingsEditor/0.0.1603.862@0.0.1603.862" timestamp="1601470964695" />
+    <state x="531" y="191" key="extract.method.dialog" timestamp="1601481813075">
+      <screen x="0" y="0" width="1603" height="862" />
+    </state>
+    <state x="531" y="191" key="extract.method.dialog/0.0.1603.862@0.0.1603.862" timestamp="1601481813075" />
   </component>
 </project>
